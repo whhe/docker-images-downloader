@@ -1,0 +1,32 @@
+name: Download
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  download-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Get the image name
+        id: get-image-name
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          IMAGE_NAME="${TAG_NAME//--/:}"
+          echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
+
+      - name: Pull Docker image
+        run: docker pull "$IMAGE_NAME"
+
+      - name: Export Docker image
+        run: docker save -o image.tar "$IMAGE_NAME"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: image
+          path: image.tar
