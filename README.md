@@ -10,6 +10,7 @@ Fork and clone this repository and create a tag by Docker image name, and then t
 
 Note: 
 - There must not be `:` in git tag, so you should use `--` to represent `:` in the tag name.
+- The workflow will use `linux/amd64` platform by default, if you want `linux/arm64` image, you can add suffix `-arm64` in tag name.
 - Workflows are not being run on forked repository by default, so you should enable it manually. See [docs](https://docs.github.com/en/actions/using-workflows/disabling-and-enabling-a-workflow?tool=webui#enabling-a-workflow).
 
 For example, you want to download the Docker image `testcontainers/ryuk:0.5.1`, then you should execute the following commands:

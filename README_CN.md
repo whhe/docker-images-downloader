@@ -10,6 +10,7 @@ fork 并 clone 本仓库，并根据需要下载的镜像名称创建 git tag，
 
 注意：
 - 因为 git tag 中不能有 `:`，因此你需要使用 `--` 来代替镜像名称中的 `:`。
+- 工作流默认使用 `linux/amd64` 平台，如果你想要 `linux/arm64` 的镜像，可以在标签名中添加后缀 `-arm64`。
 - 默认情况下，GitHub Action 在 fork 仓库里是未启用的，因此你可能需要手动启用它。请参阅[文档](https://docs.github.com/en/actions/using-workflows/disabling-and-enabling-a-workflow?tool=webui#enabling-a-workflow)。
 
 现在假设你要下载 Docker 镜像 `testcontainers/ryuk:0.5.1`，那么你应该在项目目录执行以下命令：
